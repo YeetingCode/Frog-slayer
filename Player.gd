@@ -55,4 +55,5 @@ func _physics_process (delta):
 		sprite.play("Idle")
 		sprite.stop()
 
-
+func die ():
+	get_tree().reload_current_scene()
