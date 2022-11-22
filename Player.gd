@@ -20,6 +20,7 @@ signal onFloor
 func _ready():
 	vel.x = 0
 	velprev.x = 0
+	sprite.stop()
 
 
 
