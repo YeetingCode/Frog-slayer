@@ -19,7 +19,10 @@ position = Vector2( 229, 351 )
 position = Vector2( 101, 351 )
 
 [node name="Water" parent="." instance=ExtResource( 3 )]
-position = Vector2( 326, 372 )
+position = Vector2( 358, 361 )
+
+[node name="Water2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 292, 361 )
 
 [node name="Tile4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 292, 412 )
@@ -29,3 +32,18 @@ position = Vector2( 358, 412 )
 
 [node name="Tile6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 424, 351 )
+
+[node name="Tile7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 487, 351 )
+
+[node name="Tile8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 551, 351 )
+
+[node name="Tile9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 613, 351 )
+
+[node name="Tile10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 677, 351 )
+
+[node name="Tile11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 740, 351 )
