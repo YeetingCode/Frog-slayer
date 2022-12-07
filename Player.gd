@@ -9,6 +9,12 @@ var motion = Vector2()
 
 var is_jump_cancelled = Input.is_action_just_released("ui_up") and motion.y < 0.0
 
+func _on_EnemyDetector_area_entered(area):
+	motion.y = jump/2
+
+func _on_EnemyDetector_body_entered(body):
+	queue_free()
+
 func _physics_process(delta):
 	motion.y += gravity
 	
@@ -30,3 +36,9 @@ func _physics_process(delta):
 		motion.y = gravity
 	
 	motion = move_and_slide(motion, UP)
+
+
+
+
+
+
