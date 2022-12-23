@@ -80,7 +80,7 @@ animation = "Idle"
 current = true
 limit_left = 0
 limit_right = 10752
-limit_bottom = 10000
+limit_bottom = 9920
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 position = Vector2( 3, 33 )

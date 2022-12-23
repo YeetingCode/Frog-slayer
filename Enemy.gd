@@ -11,7 +11,7 @@ func _ready():
 
 func _on_StompDetector_body_entered(body: KinematicBody2D):
 	if body.global_position.y < get_node("StompDetector").global_position.y:
-		queue_free()
+		die()
 
 
 
@@ -28,4 +28,5 @@ func _physics_process(delta):
 	motion.y = move_and_slide(motion, UP).y
 
 
-
+func die ():
+	queue_free()
