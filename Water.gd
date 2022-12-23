@@ -19,3 +19,5 @@ func _ready():
 func _on_Water_body_entered(body):
 	if body.name == "Player":
 		body.die()
+	elif body.name == "Enemy":
+		body.die()

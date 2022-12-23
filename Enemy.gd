@@ -14,8 +14,6 @@ func _on_StompDetector_body_entered(body: KinematicBody2D):
 		queue_free()
 
 
-
-
 func _physics_process(delta):
 	
 	
@@ -26,3 +24,5 @@ func _physics_process(delta):
 	motion.y = move_and_slide(motion, UP).y
 
 
+func die ():
+	queue_free()

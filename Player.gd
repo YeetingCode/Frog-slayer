@@ -40,48 +40,7 @@ func _physics_process(delta):
 
 
 
-if motion.y <= -jumpForce:
-			motion.y = -jumpForce
-		sprite.play("Jump")
-	
-		if walking == true:
-			sprite.play("Walk")
-		else:
-			sprite.play("Idle")
-			sprite.stop()
 
-
-
-	# sprite direction
-	if motion.x < 0:
-		sprite.flip_h = true
-		if not sprite.playing:
-			sprite.play("Walk")
-			walking = true
-	elif motion.x > 0:
-		sprite.flip_h = false
-		if not sprite.playing:
-			sprite.play("Walk")
-			walking = true
-	
-	# more sprite animation
-	if motion.x == 0 and is_on_floor():
-		sprite.play("Idle")
-		sprite.stop()
-	
-	if not is_on_floor() and not sprite.playing:
-		sprite.play("Jump")
-		yield(self,"onFloor")
-		if walking == true:
-			sprite.play("Walk")
-		else:
-			sprite.play("Idle")
-			sprite.stop()
-
-	
-	# variable to use in the next delta
-	if motion.x == 0:
-		walking = false
 
 
 func die ():
