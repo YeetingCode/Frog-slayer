@@ -1,10 +1,5 @@
 extends KinematicBody2D
 
-const speed = 400
-const gravity = 40
-const jump = -1000
-const UP = Vector2(0, -1)
-
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -62,20 +57,20 @@ func _physics_process (delta):
 	vel.y += gravity * delta
 	# jump input
 	if Input.is_action_pressed("jump") and is_on_floor():
+		sprite.play("Jump")
 		yield(get_tree().create_timer(delta),"timeout")
 		vel.y -= jumpForce
 		if vel.y <= -jumpForce:
 			vel.y = -jumpForce
-		sprite.play("Jump")
+		yield(get_tree().create_timer(delta),"timeout")
 		yield(self,"onFloor")
 		if walking == true:
 			sprite.play("Walk")
 		else:
 			sprite.play("Idle")
 			sprite.stop()
-
-
-
+	
+	
 	# sprite direction
 	if vel.x < 0:
 		sprite.flip_h = true
@@ -109,7 +104,8 @@ func _physics_process (delta):
 	
 	velprev.x = vel.x
 
+func collect_frog (value):
+	score += value
 
 func die ():
 	get_tree().reload_current_scene()
-
