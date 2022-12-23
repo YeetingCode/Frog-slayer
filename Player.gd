@@ -23,7 +23,23 @@ func _ready():
 	sprite.stop()
 
 
+func _on_EnemyDetector_area_entered(area):
+	sprite.play("Jump")
+	yield(get_tree().create_timer(delta),"timeout")
+	vel.y -= jumpForce
+	if vel.y <= -jumpForce:
+		vel.y = -jumpForce
+	yield(get_tree().create_timer(delta),"timeout")
+	yield(self,"onFloor")
+	if walking == true:
+		sprite.play("Walk")
+	else:
+		sprite.play("Idle")
+		sprite.stop()
 
+func _on_EnemyDetector_body_entered(body):
+	die()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
