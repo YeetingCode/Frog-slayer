@@ -16,11 +16,16 @@ func _on_StompDetector_body_entered(body: KinematicBody2D):
 
 
 
+
+
 func _physics_process(delta):
 	
-
+	
 	motion.y += gravity
 	
 	if is_on_wall():
 		motion.x *= -1.0
 	motion.y = move_and_slide(motion, UP).y
+
+
+

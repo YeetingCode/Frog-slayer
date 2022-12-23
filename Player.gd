@@ -23,23 +23,6 @@ func _ready():
 	sprite.stop()
 
 
-func _on_EnemyDetector_area_entered(area):
-	sprite.play("Jump")
-	yield(get_tree().create_timer(delta),"timeout")
-	vel.y -= jumpForce
-	if vel.y <= -jumpForce:
-		vel.y = -jumpForce
-	yield(get_tree().create_timer(delta),"timeout")
-	yield(self,"onFloor")
-	if walking == true:
-		sprite.play("Walk")
-	else:
-		sprite.play("Idle")
-		sprite.stop()
-
-func _on_EnemyDetector_body_entered(body):
-	die()
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -60,11 +43,11 @@ func _physics_process (delta):
 		emit_signal("onFloor")
 	
 	# movement inputs
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("ui_left"):
 		vel.x -= speed
 		if vel.x < (0 - speed):
 			vel.x = -speed
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("ui_right"):
 		vel.x += speed
 		if vel.x > speed:
 			vel.x = speed
@@ -72,7 +55,7 @@ func _physics_process (delta):
 	# gravity
 	vel.y += gravity * delta
 	# jump input
-	if Input.is_action_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("ui_up") and is_on_floor():
 		sprite.play("Jump")
 		yield(get_tree().create_timer(delta),"timeout")
 		vel.y -= jumpForce
@@ -125,3 +108,25 @@ func collect_frog (value):
 
 func die ():
 	get_tree().reload_current_scene()
+
+
+func _on_EnemyDetector_area_entered(area):
+	sprite.play("Jump")
+	yield(get_tree().create_timer(1),"timeout")
+	vel.y -= jumpForce
+	if vel.y <= -jumpForce:
+		vel.y = -jumpForce
+	yield(get_tree().create_timer(1),"timeout")
+	yield(self,"onFloor")
+	if walking == true:
+		sprite.play("Walk")
+	else:
+		sprite.play("Idle")
+		sprite.stop()
+
+func _on_EnemyDetector_body_entered(body):
+	die()
+
+
+
+
