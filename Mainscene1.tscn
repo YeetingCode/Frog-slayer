@@ -50,4 +50,4 @@ position = Vector2( 677, 351 )
 position = Vector2( 740, 351 )
 
 [node name="Frog" parent="." instance=ExtResource( 4 )]
-position = Vector2( 659, 274 )
+position = Vector2( 634, 298 )

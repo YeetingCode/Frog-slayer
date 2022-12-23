@@ -57,11 +57,12 @@ func _physics_process (delta):
 	vel.y += gravity * delta
 	# jump input
 	if Input.is_action_pressed("jump") and is_on_floor():
+		sprite.play("Jump")
 		yield(get_tree().create_timer(delta),"timeout")
 		vel.y -= jumpForce
 		if vel.y <= -jumpForce:
 			vel.y = -jumpForce
-		sprite.play("Jump")
+		yield(get_tree().create_timer(delta),"timeout")
 		yield(self,"onFloor")
 		if walking == true:
 			sprite.play("Walk")

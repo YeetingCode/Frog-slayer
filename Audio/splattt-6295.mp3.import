@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/splattt-6295.mp3-8f34d2c2044ef8d45fd621bd8d34d8f8.mp3str"
+
+[deps]
+
+source_file="res://Audio/splattt-6295.mp3"
+dest_files=[ "res://.import/splattt-6295.mp3-8f34d2c2044ef8d45fd621bd8d34d8f8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
