@@ -4,7 +4,7 @@
 [ext_resource path="res://Player.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 40 )
+extents = Vector2( 30.875, 35.5 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
@@ -60,13 +60,14 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 33, 5 )
+extents = Vector2( 32, 4 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 6
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.75, 0 )
+position = Vector2( 3.875, 2.5 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
@@ -77,14 +78,17 @@ animation = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_left = 0
+limit_right = 10752
+limit_bottom = 10000
 
 [node name="EnemyDetector" type="Area2D" parent="."]
-position = Vector2( 3, 30 )
+position = Vector2( 3, 33 )
 collision_layer = 8
-collision_mask = 4
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2( 0, 5 )
+position = Vector2( 1, 1 )
 shape = SubResource( 14 )
 
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]

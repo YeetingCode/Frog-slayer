@@ -6,9 +6,9 @@ extends KinematicBody2D
 # var b = "text"
 var score : int = 0
 # physics
-var speed : int = 200
-var jumpForce : int = 600
-var gravity : int = 800
+var speed : int = 400
+var jumpForce : int = 1000
+var gravity : int = 40
 var vel : Vector2 = Vector2()
 var grounded : bool = false
 var velprev : Vector2 = Vector2()
@@ -17,6 +17,13 @@ onready var sprite = $Sprite
 var walking : bool = false
 signal onFloor
 # Called when the node enters the scene tree for the first time.
+
+func _on_EnemyDetector_body_entered(body):
+	die()
+
+func _on_EnemyDetector_area_entered(area):
+	vel.y = -jumpForce/2
+
 func _ready():
 	vel.x = 0
 	velprev.x = 0
@@ -47,13 +54,16 @@ func _physics_process (delta):
 		vel.x -= speed
 		if vel.x < (0 - speed):
 			vel.x = -speed
-	if Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("ui_right"):
 		vel.x += speed
 		if vel.x > speed:
 			vel.x = speed
+	else:
+		vel.x = 0
+		
 	vel = move_and_slide(vel, Vector2.UP)
 	# gravity
-	vel.y += gravity * delta
+	vel.y += gravity
 	# jump input
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		sprite.play("Jump")
@@ -110,22 +120,23 @@ func die ():
 	get_tree().reload_current_scene()
 
 
-func _on_EnemyDetector_area_entered(area):
-	sprite.play("Jump")
-	yield(get_tree().create_timer(1),"timeout")
-	vel.y -= jumpForce
-	if vel.y <= -jumpForce:
-		vel.y = -jumpForce
-	yield(get_tree().create_timer(1),"timeout")
-	yield(self,"onFloor")
-	if walking == true:
-		sprite.play("Walk")
-	else:
-		sprite.play("Idle")
-		sprite.stop()
 
-func _on_EnemyDetector_body_entered(body):
-	die()
+#	sprite.play("Jump")
+#	vel.y -= jumpForce
+#	if vel.y <= -jumpForce:
+#		vel.y = -jumpForce
+#	yield(get_tree().create_timer(1),"timeout")
+#	yield(self,"onFloor")
+#	if walking == true:
+#		sprite.play("Walk")
+#	else:
+#		sprite.play("Idle")
+#		sprite.stop()
+
+
+
+
+
 
 
 
